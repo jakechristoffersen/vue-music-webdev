@@ -1,8 +1,20 @@
 import vue from 'vue'
 import vuex from 'vuex'
-import $ from 'jquery'
+import axios from 'axios'
 
 vue.use(vuex)
+
+let auth = axios.create({
+  baseURL: '//vue-music-server.herokuapp.com/auth',
+  timeout: 1000,
+  withCredentials: true
+})
+
+let api = axios.create({
+  baseURL: '//vue-music-server.herokuapp.com/api',
+  timeout: 1000,
+  withCredentials: true
+})
 
 var store = new vuex.Store({
   state: {
@@ -16,10 +28,9 @@ var store = new vuex.Store({
   },
   actions: {
     getMusicByArtist({commit, dispatch}, artist) {
-      var url = '//bcw-getter.herokuapp.com/?url=';
-      var url2 = 'https://itunes.apple.com/search?term=' + artist;
-      var apiUrl = url + encodeURIComponent(url2);
-      $.get(apiUrl).then(data=>{
+      var apiurl = 'https://itunes.apple.com/search?term=' + artist;
+      api.get(apiUrl).then(data=>{
+        debugger
         commit('setResults', data)
       })
     },
