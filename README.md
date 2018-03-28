@@ -27,18 +27,18 @@ export default {
 ```
 Managing your list of songs will likely be the trickest part of the assignment. 
 
-### Step 1 -  Communicating with Services? 
+### Step 1 -  Communicating with the Store? 
 
 Before starting step 1 You should already have a component that is responsible for drawing the `itunes songList` to the page. From your itunes component you will need to add a button to each song as it is rendered to the page so you have the option of adding it to your tracks....
 
-You will need to ensure that your component imports the `MyTunesService`. Focus on hooking up the add button to a function. Make sure you can get the button to pass you the information needed to `identify` the correct song.
+You will need to ensure that your Home component imports the `MyTunes` component. Focus on hooking up the add button to a function. Make sure you can get the button to pass you the information needed to `identify` the correct song.
 
 Then make sure you take the `entire song object` and pass it to your `myTunes.addTrack` method
 
 ```javascript
    addTrack(track){
     //....
-      myTunes.addTrack(track) // <--- Make sure you have imported the MyTunesService
+      this.store.dispatch('addTrack', track) // <--- Calling the action in our store
     //....
   }
 ```
@@ -65,30 +65,11 @@ Also don't forget it would be useless to keep around a list if you couldn't stil
       - Playlist retains order set by user
   - Functionality
       - Retains functionality of first playlist
-      - Persist your data with mongoDB
+      - Persist your data to the database
       - Add / Remove Tracks from Playlist
       - Promote/Demote Tracks on Playlist
 
 
 ### BONUS IDEAS - Some enhancing features 
-- User Auth
 - Have your myTunes List slide in and out when wanting to access it
-- Implement dragging to reorder your songs and drag to add to favorites
-
-> Stretch Goal: Allow the user to create multiple playlists and manage the songs on each playlist 
-> ***HINT:*** 
-
-```javascript
-let store = { 
-  playlists: { 
-    "90's Rock": [], 
-    "Best of the 90's": [] 
-  }
-}
-
-// You probably will need a few extra public methods
-// CreatePlaylist()
-// RemovePlaylist()
-
-//And an extra Schema....
-```
+- Display different icons for song actions(promote, demote, etc)
