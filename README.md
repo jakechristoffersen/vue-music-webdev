@@ -73,3 +73,71 @@ Also don't forget it would be useless to keep around a list if you couldn't stil
 ### BONUS IDEAS - Some enhancing features 
 - Have your myTunes List slide in and out when wanting to access it
 - Display different icons for song actions(promote, demote, etc)
+
+
+## The API
+
+### Track model
+{
+    artistName: { type: String, required: true},      //has to be a string
+    trackName: { type: String, required: true},       //has to be a string
+    previewUrl: {type: String, required: true},       //has to be a string
+    artworkUrl100: {type: String, required: true},    //has to be a string
+    userId: {type: ObjectId, ref: 'User'},            //has to be a users id
+    likes: {type: Number, required: true, default: 0} //will be set to 0 by default
+}
+
+### Post Request Method
+
+#### Create Track
+https://night-class-server.herokuapp.com/api/tracks/:trackId - new track object as data for request
+
+
+### Get Request Method
+
+#### Get One Track
+https://night-class-server.herokuapp.com/api/tracks/:trackId - no data passed for request
+
+#### Get Entire Playlist 
+https://night-class-server.herokuapp.com/api/tracks - no data passed for request
+
+
+### Put Request Method
+
+#### Edit Track
+https://night-class-server.herokuapp.com/api/tracks/:trackId - edited track object as data for request
+
+
+### Delete Request Method
+
+#### Delete Track
+https://night-class-server.herokuapp.com/api/tracks/:trackId - no data passed for request
+
+
+## The Auth
+
+### User Model
+{
+    name: { type: String, required: true },             //has to be a string
+    password: { type: String, required: true },         //has to be a string
+    email: {type: String, required: true, unique: true} //has to be a string and cant match another in the Database
+}
+
+### Register User
+creating a new user
+https://night-class-server.herokuapp.com/api/auth/register - new user object as data for request it will log you in and return a user
+
+
+### Login User
+getting an existing user from the database
+https://night-class-server.herokuapp.com/api/auth/register - user email and password as data for request it will return a user
+
+
+### Authenticate User
+automatically getting a user based on stored sessions or cookies in the browser
+https://night-class-server.herokuapp.com/api/auth/register - stored session in browser as data it will log you in and return user
+
+
+### Logout User
+delete the current users session(logout)
+https://night-class-server.herokuapp.com/api/auth/register - destroy stored session
