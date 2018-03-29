@@ -19,6 +19,12 @@ let api = axios.create({
   withCredentials: true
 })
 
+//goes to itunes api for itune tracks 
+let itunes = axios.create({
+  baseURL: 'https://itunes.apple.com',
+  timeout: 5000
+})
+
 var store = new vuex.Store({
   state: {
     myTunes: [],
@@ -30,11 +36,11 @@ var store = new vuex.Store({
     }
   },
   actions: {
+    //this one is working for you, check out your state.itunes
     getMusicByArtist({commit, dispatch}, artist) {
-      var apiurl = 'https://itunes.apple.com/search?term=' + artist;
-      api.get(apiUrl).then(data=>{
-        debugger
-        commit('setItunes', data)
+      itunes.get('search?term='+artist).then(res=>{
+        console.log(res)
+        commit('setItunes', res.data.results)
       })
       .catch(err=>{
         console.error(err)
