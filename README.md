@@ -123,21 +123,27 @@ https://night-class-server.herokuapp.com/api/tracks/:trackId - no data passed fo
     email: {type: String, required: true, unique: true} //has to be a string and cant match another in the Database
 }
 
-### Register User
+
+### Post Request Methods
+
+#### Register User
 creating a new user
 https://night-class-server.herokuapp.com/api/auth/register - new user object as data for request it will log you in and return a user
 
-
-### Login User
+#### Login User
 getting an existing user from the database
-https://night-class-server.herokuapp.com/api/auth/register - user email and password as data for request it will return a user
+https://night-class-server.herokuapp.com/api/auth/login - user email and password as data for request it will return a user
 
 
-### Authenticate User
+### Get Request Method
+
+#### Authenticate User
 automatically getting a user based on stored sessions or cookies in the browser
-https://night-class-server.herokuapp.com/api/auth/register - stored session in browser as data it will log you in and return user
+https://night-class-server.herokuapp.com/api/auth/authenticate - stored session in browser as data it will log you in and return user
 
 
-### Logout User
+### Delete Request Method
+
+#### Logout User
 delete the current users session(logout)
-https://night-class-server.herokuapp.com/api/auth/register - destroy stored session
+https://night-class-server.herokuapp.com/api/auth/logout - destroy stored session
