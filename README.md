@@ -78,6 +78,7 @@ Also don't forget it would be useless to keep around a list if you couldn't stil
 ## The API
 
 ### Track model
+```javascript
 {
     artistName: { type: String, required: true},      //has to be a string
     trackName: { type: String, required: true},       //has to be a string
@@ -86,6 +87,7 @@ Also don't forget it would be useless to keep around a list if you couldn't stil
     userId: {type: ObjectId, ref: 'User'},            //has to be a users id
     likes: {type: Number, required: true, default: 0} //will be set to 0 by default
 }
+```
 
 ### Post Request Method
 
@@ -117,11 +119,13 @@ https://night-class-server.herokuapp.com/api/tracks/:trackId - no data passed fo
 ## The Auth
 
 ### User Model
+```javascript
 {
     name: { type: String, required: true },             //has to be a string
     password: { type: String, required: true },         //has to be a string
     email: {type: String, required: true, unique: true} //has to be a string and cant match another in the Database
 }
+```
 
 
 ### Post Request Methods
