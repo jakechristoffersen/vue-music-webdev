@@ -6,6 +6,7 @@
             <input type="text" name="email" id="email" v-model="user.email">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" v-model="user.password">
+            <button @click="login">Login</button>    
             <p>Not a user?
                 <em @click="toggle">Register</em>
             </p>
@@ -44,7 +45,11 @@
             },
             register(){
                 this.$store.dispatch('register', this.user)
-            }
+            },
+            login(){
+            this.$store.dispatch('login', this.user)
+            this.user = {}
+          }
         },
         components: {}
     }

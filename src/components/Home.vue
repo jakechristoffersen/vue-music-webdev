@@ -1,42 +1,42 @@
 <template>
   <div class="home">
     <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
-    <itunes class="itunes"></itunes>
-    <my-tunes class="my-tunes"></my-tunes>
+    <div class="container">
+      <itunes class="itunes"></itunes>
+    </div>
+    <div class="container-fluid">
+      <my-tunes class="my-tunes"></my-tunes>
+    </div>
   </div>
 </template>
 
 <script>
-import MyTunes from './MyTunes.vue'
-import Itunes from './Itunes.vue'
-export default {
-  name: 'home',
-  data () {
-    return {
-      
+  import MyTunes from './MyTunes.vue'
+  import Itunes from './Itunes.vue'
+  export default {
+    name: 'home',
+    data() {
+      return {
+
+      }
+    },
+    components: {
+      Itunes,
+      MyTunes
     }
-  },
-  components: {
-    Itunes,
-    MyTunes
   }
-}
 </script>
 
 
 <style>
-.my-tunes{
-  display: inline-block;
-  min-height: 98vh;
-  min-width: 50%;
-  background: green;
-}
+  .my-tunes {
+ 
+    background: rgb(216, 216, 216);
+  }
 
-.itunes{
-  display: inline-block;
-  background: red;
-  min-height: 98vh;
-  min-width: 45%;
-}
+  .itunes {
+  
+    background: rgb(255, 255, 255);
 
+  }
 </style>
