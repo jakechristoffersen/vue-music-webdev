@@ -21,6 +21,7 @@
                         <th>Track Price</th>
                         <th>Price</th>
                         <th>Preview</th>
+                        <th>Add Tunes</th>
                     </tr>
                 </thead>
                 <tbody v-for="itune in itunes">
@@ -37,6 +38,7 @@
                                 <source :src="itune.previewUrl">
                             </audio>
                         </th>
+                        <th><button type="button" :data-target="'#'+ itune._id" class="btn btn-default" @click="addSong(itune)">Add</button></th>
                     </tr>
                 </tbody>
             </table>
@@ -59,6 +61,10 @@
             search(artist) {
                 this.$store.dispatch('getMusicByArtist', this.artist)
                 this.artist = ""
+            },
+            addSong(track) {
+                
+                this.$store.dispatch('addToMyTunes', track)
             }
         },
         computed: {

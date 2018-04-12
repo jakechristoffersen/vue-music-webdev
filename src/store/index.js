@@ -3,6 +3,7 @@ import vuex from 'vuex'
 import axios from 'axios'
 import router from "../router"
 
+
 vue.use(vuex)
 
 //The location of the authentication resources on our server
@@ -16,7 +17,7 @@ let auth = axios.create({
 //The location of the basic api resources on our server
 let api = axios.create({
   baseURL: '//night-class-server.herokuapp.com/api',
-  timeout: 1000,
+  timeout: 5000,
   withCredentials: true
 })
 
@@ -38,6 +39,13 @@ var store = new vuex.Store({
     },
     setUser(state, user){
       state.user = user
+    },
+    setMyTunes(state, myTunes) {
+      myTunes.sort(function(a,b){
+        return b.likes - a.likes
+      })
+      state.myTunes = myTunes
+
     }
   },
   actions: {
@@ -52,19 +60,39 @@ var store = new vuex.Store({
         })
     },
     getMyTunes({ commit, dispatch }) {
-      //this should send a get request to your server to return the list of saved tunes
+      api.get('tracks')
+      .then(res => {
+        console.log(res)
+        commit('setMyTunes', res.data.data)
+      })
     },
     addToMyTunes({ commit, dispatch }, track) {
-      //this will post to your server adding a new track to your tunes
+      api.post('tracks', track)
+      .then(res =>{
+        console.log(res)
+        dispatch('getMyTunes')
+      })
     },
-    removeTrack({ commit, dispatch }, track) {
-      //Removes track from the database with delete
+    removeTrack({ commit, dispatch }, trackId) {
+     api.delete('tracks/' + trackId)
+     .then(res => {
+       console.log(res)
+       dispatch('getMyTunes')
+     })
     },
     promoteTrack({ commit, dispatch }, track) {
-      //this should increase the position / upvotes and downvotes on the track
+      api.put('tracks/' + track._id , track)
+      .then(res =>{
+        console.log(res)
+        dispatch('getMyTunes')
+      })
     },
     demoteTrack({ commit, dispatch }, track) {
-      //this should decrease the position / upvotes and downvotes on the track
+      api.put('tracks/' + track._id, track)
+      .then(res =>{
+        console.log(res)
+        dispatch('getMyTunes')
+      })
     },
 
     //USER AUTHENTICATION AREA
