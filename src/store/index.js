@@ -8,15 +8,14 @@ vue.use(vuex)
 
 //The location of the authentication resources on our server
 let auth = axios.create({
-  baseURL: '//night-class-server.herokuapp.com/auth',
-  // baseURL: '//localhost:3000/auth',
+  baseURL: '',
   timeout: 1000,
   withCredentials: true
 })
 
 //The location of the basic api resources on our server
 let api = axios.create({
-  baseURL: '//night-class-server.herokuapp.com/api',
+  baseURL: '',
   timeout: 5000,
   withCredentials: true
 })
